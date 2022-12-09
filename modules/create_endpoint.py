@@ -29,7 +29,9 @@ url_param = 'url='
 
 api_param = 'k='
 
-api_key = '9ef525c9-6527-4626-bbf2-fbfb5ba30318'
+wpt_api_key_file = open('./wpt_api_key.txt', 'r')
+
+wpt_api_key = wpt_api_key_file.readline()
 
 format_param = 'f='
 

@@ -6,13 +6,14 @@ from modules.create_endpoint import client_name
 gc = pygsheets.authorize(client_secret='./credentials/client_secret.json')
 
 # open the Google spreadsheet and save all the sheets
-sh = gc.open(f'Copia de Auditoria-SEO-{client_name}')
+sh = gc.open(f'Auditoria-SEO-{client_name}')
 
 # save all the workseets in variables
 wks_velocidad = sh.worksheet('title', 'Velocidad')
 wks_cache = sh.worksheet('title', 'Caché')
 wks_webVitals = sh.worksheet('title', 'Web Vitals')
 wks_pageSpeed = sh.worksheet('title', 'PageSpeed')
+wks_webVitals = sh.worksheet('title', 'Web Vitals')
 
 # save the worksheets also un data frames
 df_velocidad = pd.DataFrame(wks_velocidad)

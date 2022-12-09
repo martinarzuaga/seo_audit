@@ -15,7 +15,7 @@ def request_tests_mobile(urls):
     for url in urls:
 
         endpoint = api_base_url + url_param + url + sep + \
-                   api_param + api_key + sep + format_param + format_resp + sep + scenario_mobile + sep + mobile + throttle_cpu
+                   api_param + wpt_api_key + sep + format_param + format_resp + sep + scenario_mobile + sep + mobile + throttle_cpu
 
         ''' ------------------------
         MAKE THE REQUEST
@@ -48,7 +48,7 @@ def request_tests_desktop(urls):
 
     for url in urls:
         endpoint = api_base_url + url_param + url + sep + \
-                   api_param + api_key + sep + format_param + format_resp + sep + scenario_desktop + sep + throttle_cpu
+                   api_param + wpt_api_key + sep + format_param + format_resp + sep + scenario_desktop + sep + throttle_cpu
 
         ''' ------------------------
         MAKE THE REQUEST

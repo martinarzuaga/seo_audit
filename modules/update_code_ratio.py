@@ -29,4 +29,6 @@ def update_code_ratio(data, wks_velocidad):
         wks_velocidad.update_value(f'H{i+2}', js_ratio)
         wks_velocidad.update_value(f'I{i+2}', img_ratio)
         wks_velocidad.update_value(f'J{i+2}', font_ratio)
+    
+    print('Code Ratio Updated')
 
