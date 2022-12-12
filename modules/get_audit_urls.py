@@ -14,12 +14,7 @@ wks_cache = sh.worksheet('title', 'Caché')
 wks_webVitals = sh.worksheet('title', 'Web Vitals')
 wks_pageSpeed = sh.worksheet('title', 'PageSpeed')
 wks_webVitals = sh.worksheet('title', 'Web Vitals')
-
-# save the worksheets also un data frames
-df_velocidad = pd.DataFrame(wks_velocidad)
-df_cache = pd.DataFrame(wks_cache)
-df_webVitals = pd.DataFrame(wks_webVitals)
-df_pageSpeed = pd.DataFrame(wks_pageSpeed)
+wks_mobileFriendly = sh.worksheet('title', 'Mobile Friendly')
 
 # save all the URLs to check to
 urls_list = []
