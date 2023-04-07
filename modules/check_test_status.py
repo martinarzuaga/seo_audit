@@ -24,9 +24,6 @@ def check_status_test(url_req, url):
         r_json = requests.get(url_req)
 
         # Store the content in a json dictionary
-        if json.loads(r_json.text):
-            cont = json.loads(r_json.text)
-        else:
-            print('Empty Response')
+        cont = json.loads(r_json.text)
 
     return cont

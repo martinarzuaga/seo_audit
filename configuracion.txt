@@ -1,7 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Divino
 Sao Paulo
 =======
 Aliss
 Virginia
 >>>>>>> cc12a95c7e1e4a336a9403adfdcb79397b0987ed
+=======
+Aliss-CR_y_PA
+Virginia
+>>>>>>> parent of fd47eae (programa funcionando)
