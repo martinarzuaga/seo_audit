@@ -14,6 +14,10 @@ mobile_results = rt.request_tests_mobile(gu.urls_list)
 desktop_results = rt.request_tests_desktop(gu.urls_list)
 
 # ALL TEST
+<<<<<<< HEAD
+=======
+# ALL TEST
+>>>>>>> cc12a95c7e1e4a336a9403adfdcb79397b0987ed
 ud.update_velocidad_mobile(mobile_results, gu.wks_velocidad)
 ud.update_velocidad_desktop(desktop_results, gu.wks_velocidad)
 ucr.update_code_ratio(mobile_results, gu.wks_velocidad)
@@ -26,4 +30,8 @@ uwv.update_web_vitals_desktop(desktop_results, gu.wks_webVitals)
 psi.update_psi_mobile(gu.urls_list, gu.wks_pageSpeed)
 psi.update_psi_desktop(gu.urls_list, gu.wks_pageSpeed)
 
+<<<<<<< HEAD
 mft.update_mobileFriendlyTest()
+=======
+# mft.update_mobileFriendlyTest()
+>>>>>>> cc12a95c7e1e4a336a9403adfdcb79397b0987ed
