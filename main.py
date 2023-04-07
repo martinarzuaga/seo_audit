@@ -14,6 +14,7 @@ mobile_results = rt.request_tests_mobile(gu.urls_list)
 desktop_results = rt.request_tests_desktop(gu.urls_list)
 
 # ALL TEST
+# ALL TEST
 ud.update_velocidad_mobile(mobile_results, gu.wks_velocidad)
 ud.update_velocidad_desktop(desktop_results, gu.wks_velocidad)
 ucr.update_code_ratio(mobile_results, gu.wks_velocidad)
