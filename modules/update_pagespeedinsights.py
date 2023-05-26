@@ -23,7 +23,7 @@ def update_psi_mobile(urls, wks_pagespeed):
     """
 
     for i in range(len(urls)):
-        endpoint = url_test_endpoint + 'url=' + urls[i][0] + sep + mobile_strategy + sep + locale + sep + psi_api_key
+        endpoint = url_test_endpoint + 'url=' + urls[i] + sep + mobile_strategy + sep + locale + sep + psi_api_key
         response = urllib.request.urlopen(endpoint)
         data = json.loads(response.read())
         overall_score = data["lighthouseResult"]["categories"]["performance"]["score"] * 100

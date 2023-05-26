@@ -7,20 +7,20 @@ from modules.create_endpoint import client_name
 gc = pygsheets.authorize(client_secret='./credentials/client_secret_martin.json')
 
 # open the Google spreadsheet and save all the sheets
-# sh = gc.open(f'Auditoria-SEO-{client_name}')
+sh = gc.open(f'Auditoria-SEO-{client_name}')
 # Activate this line below when you are doing a review
 # sh = gc.open(f'Auditoria-SEO-{client_name}-Revision')
 # Activate this line below when you are doing another task
-sh = gc.open(f'Auditoria-Performance-{client_name}')
+# sh = gc.open(f'Auditoria-Performance-{client_name}')
 # Activate this line below when you are doing another task
-# sh = gc.open(f'Auditoria-Performance-{client_name}-Revision')
+# sh = gc.open(f'Auditoria-Performance-{client_name}-Revision-Final')
 
 # save all the workseets in variables
 wks_velocidad = sh.worksheet('title', 'Velocidad')
 wks_cache = sh.worksheet('title', 'Caché')
 wks_webVitals = sh.worksheet('title', 'Web Vitals')
 wks_pageSpeed = sh.worksheet('title', 'PageSpeed')
-# wks_mobileFriendly = sh.worksheet('title', 'Web Responsive')
+wks_mobileFriendly = sh.worksheet('title', 'Web Responsive')
 
 # save all the URLs to check to
 urls_list = []

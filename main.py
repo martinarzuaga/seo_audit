@@ -13,7 +13,7 @@ lgs.log_to_gs()
 mobile_results = rt.request_tests_mobile(gu.urls_list)
 desktop_results = rt.request_tests_desktop(gu.urls_list)
 
-# ALL TEST
+# ALL TESTS
 ud.update_velocidad_mobile(mobile_results, gu.wks_velocidad)
 ud.update_velocidad_desktop(desktop_results, gu.wks_velocidad)
 ucr.update_code_ratio(mobile_results, gu.wks_velocidad)
@@ -27,7 +27,3 @@ psi.update_psi_mobile(gu.urls_list, gu.wks_pageSpeed)
 psi.update_psi_desktop(gu.urls_list, gu.wks_pageSpeed)
 
 mft.update_mobileFriendlyTest()
-
-psi.update_psi_mobile(mobile_results, gu.wks_pageSpeed)
-psi.update_psi_desktop(desktop_results, gu.wks_pageSpeed)
-
