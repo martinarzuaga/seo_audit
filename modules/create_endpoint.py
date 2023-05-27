@@ -51,7 +51,7 @@ throttle_cpu = f"throttle_cpu={throttle_cpu_value}"
 
 browser = "Chrome"
 
-connectivity_mobile = "3G"
+connectivity_mobile = "3GFast"
 
 connectivity_desktop = "Cable"
 
