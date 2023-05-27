@@ -18,14 +18,9 @@ sh = gc.open(f'Auditoria-SEO-{client_name}')
 # save all the workseets in variables
 wks_velocidad = sh.worksheet('title', 'Velocidad')
 wks_cache = sh.worksheet('title', 'Caché')
-wks_webVitals = sh.worksheet('title', 'Web Vitals')
+wks_webVitals = sh.worksheet('title', 'Core Web Vitals')
 wks_pageSpeed = sh.worksheet('title', 'PageSpeed')
-<<<<<<< HEAD
-wks_webVitals = sh.worksheet('title', 'Web Vitals')
 wks_mobileFriendly = sh.worksheet('title', 'Mobile Friendly')
-=======
-wks_mobileFriendly = sh.worksheet('title', 'Web Responsive')
->>>>>>> dev
 
 # save all the URLs to check to
 urls_list = []
