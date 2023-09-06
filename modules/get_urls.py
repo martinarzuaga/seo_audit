@@ -4,7 +4,7 @@ import credentials.loging_to_gs as lgs
 gc = lgs.log_to_gs()
 
 # open the Google spreadsheet and save all the sheets
-sh = gc.open('Auditoria-Performance-Divino')
+sh = gc.open('Copy of Auditoria-SEO-Aliss-CR_y_PA')
 
 # save all the worksheets in variables
 wks_velocidad = sh.worksheet('title', 'Velocidad')
