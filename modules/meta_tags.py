@@ -7,7 +7,7 @@ import pygsheets
 from modules.create_endpoint import client_name
 from urllib.parse import urlparse
 
-## Setup chrome options
+# Setup chrome options
 options = Options()
 options.add_argument("--headless")
 options.add_argument("--no-sandbox")
@@ -48,6 +48,7 @@ except:
 def get_audit_sheet(gc):
     sh = gc.open(f'Auditoria-SEO-{client_name}')
     return sh
+
 
 # Get the title and update it
 def seo_title(html, sheet, cell_number):
@@ -91,20 +92,23 @@ def seo_noindex_tag(html, sheet, cell_number):
         wks_indexacion.update_value(f'C{cell_number + 2}', 'Si')
         wks_indexacion.update_value(f'D{cell_number + 2}', 'Sin bloqueo')
 
+
 def seo_canonical_tag(html, sheet, cell_number):
+
     # Get the Canonical Worksheet
     wks_canonicals = sheet.worksheet('title', 'URL Canonicals')
 
-    meta_canonical_tag = html.find('link', {'rel':'canonical'})['href']
-
-    if len(meta_canonical_tag) > 0:
+    try:
+        meta_canonical_tag = html.find('link', {'rel': 'canonical'})['href']
         wks_canonicals.update_value(f'C{cell_number+2}', 'Configurado')
         wks_canonicals.update_value(f'D{cell_number+2}', meta_canonical_tag)
-    else:
+    except:
         wks_canonicals.update_value(f'C{cell_number+2}', 'No Configurado')
         wks_canonicals.update_value(f'D{cell_number + 2}', '')
 
+
 def seo_headings_tags(html, sheet, cell_number):
+
     # Get the headings Worksheet
     wks_headings = sheet.worksheet('title', 'Etiquetas H')
 
@@ -140,6 +144,7 @@ def seo_headings_tags(html, sheet, cell_number):
 
 
 def seo_alt_images(html, sheet, cell_number):
+
     # Get the headings Worksheet
     wks_imagenes = sheet.worksheet('title', 'Optimización Imágenes')
 
