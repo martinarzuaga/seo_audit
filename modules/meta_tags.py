@@ -36,14 +36,6 @@ def get_rendered_source_code(url):
 gc = pygsheets.authorize(client_secret='./credentials/client_secret_martin.json')
 sh = gc.open(f'Auditoria-SEO-{client_name}')
 
-file = open('./configuracion.txt', 'r')
-file = file.readlines()
-domain = file[2].replace('\n', '')
-try:
-    cdn = file[3].replace('\n', '')
-except:
-    cdn = None
-
 
 def get_audit_sheet(gc):
     sh = gc.open(f'Auditoria-SEO-{client_name}')
@@ -152,15 +144,30 @@ def seo_alt_images(html, sheet, cell_number):
 
     img_total = len(img_tags)
 
-    img_alt = 0
+    for img in img_tags:
+        if img.parent.name == 'noscript':
+            img_total -= 1
+
+    img_with_alt = 0
+
+    img_without_alt = 0
 
     for imagen in img_tags:
-        alt = 'alt'
-        if alt in imagen.attrs:
-            img_alt += 1
+
+        try:
+            if imagen.parent.name == 'noscript':
+                continue
+            if 'alt' in imagen.attrs:
+                alt_text = imagen.attrs['alt']
+                if len(alt_text) > 0:
+                    img_with_alt += 1
+                else:
+                    img_without_alt += 1
+        except:
+            img_without_alt += 1
 
     wks_imagenes.update_value(f'C{cell_number+2}', img_total)
-    wks_imagenes.update_value(f'D{cell_number+2}', img_total - img_alt)
+    wks_imagenes.update_value(f'D{cell_number+2}', img_without_alt)
 
 
 def run_meta_tags_test(urls_list, sheet):
@@ -170,25 +177,25 @@ def run_meta_tags_test(urls_list, sheet):
         url = get_rendered_source_code(urls_list[i])
 
         # Get the title and update it
-        seo_title(url, sheet, i)
-        print(f'Title de la celda E{i + 2} actualizado')
-
-        # Get the meta description and updated
-        seo_meta_description(url, sheet, i)
-        print(f'Meta-description de la celda E{i + 2} actualizada')
-
-        # Evaluate the meta_robots_tag
-        seo_noindex_tag(url, sheet, i)
-        print(f'Meta robots tag de la celda E{i + 2} actualizada')
-
-        # Evaluate the canonical tag
-        seo_canonical_tag(url, sheet, i)
-        print(f'Canonical de la celda E{i + 2} actualizada')
-
-        # Update the H2 tags
-        seo_headings_tags(url, sheet, i)
-        print(f'H1 de la celda D{i + 2} actualizadas')
-        print(f'H2 de la celda E{i + 2} actualizadas')
+        # seo_title(url, sheet, i)
+        # print(f'Title de la celda E{i + 2} actualizado')
+        #
+        # # Get the meta description and updated
+        # seo_meta_description(url, sheet, i)
+        # print(f'Meta-description de la celda E{i + 2} actualizada')
+        #
+        # # Evaluate the meta_robots_tag
+        # seo_noindex_tag(url, sheet, i)
+        # print(f'Meta robots tag de la celda E{i + 2} actualizada')
+        #
+        # # Evaluate the canonical tag
+        # seo_canonical_tag(url, sheet, i)
+        # print(f'Canonical de la celda E{i + 2} actualizada')
+        #
+        # # Update the H2 tags
+        # seo_headings_tags(url, sheet, i)
+        # print(f'H1 de la celda D{i + 2} actualizadas')
+        # print(f'H2 de la celda E{i + 2} actualizadas')
 
         # Actualizar Optimización de Imágenes
         seo_alt_images(url, sheet, i)
