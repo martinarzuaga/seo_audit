@@ -71,7 +71,10 @@ def seo_noindex_tag(html, sheet, cell_number):
     # Get the Indexacion Worksheet
     wks_indexacion = sheet.worksheet('title', 'Indexación')
 
-    meta_robots_tag = html.find('meta', {'name': 'robots'}).get('content').lower()
+    if html.find('meta', {'name': 'robots'}):
+        meta_robots_tag = html.find('meta', {'name': 'robots'}).get('content').lower()
+    else:
+        meta_robots_tag = ''
 
     if len(meta_robots_tag) > 0:
         if "noindex" in meta_robots_tag:
@@ -177,25 +180,25 @@ def run_meta_tags_test(urls_list, sheet):
         url = get_rendered_source_code(urls_list[i])
 
         # Get the title and update it
-        # seo_title(url, sheet, i)
-        # print(f'Title de la celda E{i + 2} actualizado')
+        seo_title(url, sheet, i)
+        print(f'Title de la celda E{i + 2} actualizado')
         #
         # # Get the meta description and updated
-        # seo_meta_description(url, sheet, i)
-        # print(f'Meta-description de la celda E{i + 2} actualizada')
+        seo_meta_description(url, sheet, i)
+        print(f'Meta-description de la celda E{i + 2} actualizada')
         #
         # # Evaluate the meta_robots_tag
-        # seo_noindex_tag(url, sheet, i)
-        # print(f'Meta robots tag de la celda E{i + 2} actualizada')
+        seo_noindex_tag(url, sheet, i)
+        print(f'Meta robots tag de la celda E{i + 2} actualizada')
         #
         # # Evaluate the canonical tag
-        # seo_canonical_tag(url, sheet, i)
-        # print(f'Canonical de la celda E{i + 2} actualizada')
+        seo_canonical_tag(url, sheet, i)
+        print(f'Canonical de la celda E{i + 2} actualizada')
         #
         # # Update the H2 tags
-        # seo_headings_tags(url, sheet, i)
-        # print(f'H1 de la celda D{i + 2} actualizadas')
-        # print(f'H2 de la celda E{i + 2} actualizadas')
+        seo_headings_tags(url, sheet, i)
+        print(f'H1 de la celda D{i + 2} actualizadas')
+        print(f'H2 de la celda E{i + 2} actualizadas')
 
         # Actualizar Optimización de Imágenes
         seo_alt_images(url, sheet, i)
