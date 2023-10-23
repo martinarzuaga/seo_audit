@@ -1,7 +1,7 @@
 import pygsheets as gs
 import pathlib
 
-credentials = './credentials/client_secret.json'
+credentials = './credentials/client_secret_dahseo.json'
 
 # Authorization
 def log_to_gs():
