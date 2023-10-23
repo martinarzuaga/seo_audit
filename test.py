@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import urllib.request, json
 
 psi_api_key = 'key=AIzaSyAYCP7iSxwNwA9qqdLUZ9X2BpPtA1L0rUY'
@@ -31,3 +32,5 @@ def update_psi_desktop(urls, wks_pagespeed):
         data = json.loads(response.read())
         overall_score = data["lighthouseResult"]["categories"]["performance"]["score"] * 100
         wks_pagespeed.update_value(f'C{i+2}', overall_score)
+=======
+>>>>>>> main

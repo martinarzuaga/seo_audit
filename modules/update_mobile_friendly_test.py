@@ -1,11 +1,11 @@
 import requests
 import json
 import base64
-import modules.get_audit_urls as gu
+import modules.get_audit_urls as gau
 
 def update_mobileFriendlyTest():
 
-    for i in gu.wks_mobileFriendly.range('B2:B100'):
+    for i in gau.wks_mobileFriendly.range('B2:B100'):
         
         row = i[0]
         
@@ -27,7 +27,7 @@ def update_mobileFriendlyTest():
         x = requests.post(endpoint, data = params)
         data = json.loads(x.text)
         
-        reference = gu.wks_mobileFriendly.cell(f'A{row.row}')
+        reference = gau.wks_mobileFriendly.cell(f'A{row.row}')
         
         if data["screenshot"]["data"]:
             with open(f'./screenshots/screenshot-{reference.value}.png', 'wb') as fh:
@@ -37,11 +37,11 @@ def update_mobileFriendlyTest():
             continue
         
         if data['mobileFriendliness'] == 'MOBILE_FRIENDLY':
-            gu.wks_mobileFriendly.update_value(f'C{row.row}', 'Bien')
+            gau.wks_mobileFriendly.update_value(f'C{row.row}', 'Bien')
         elif data['mobileFriendliness'] == 'NOT_MOBILE_FRIENDLY':
-            gu.wks_mobileFriendly.update_value(f'C{row.row}', 'Mal')
+            gau.wks_mobileFriendly.update_value(f'C{row.row}', 'Mal')
         else:
-            gu.wks_mobileFriendly.update_value(f'C{row.row}', 'N/A')
+            gau.wks_mobileFriendly.update_value(f'C{row.row}', 'N/A')
         
         print(f'URL: {url_toTest} analizada.')
 

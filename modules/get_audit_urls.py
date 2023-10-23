@@ -3,8 +3,10 @@ import pygsheets
 import requests
 from modules.create_endpoint import client_name
 
+credentials = './credentials/client_secret.json'
+
 # Login to Google Sheets
-gc = pygsheets.authorize(client_secret='./credentials/client_secret_martin.json')
+gc = pygsheets.authorize(client_secret=credentials)
 
 # open the Google spreadsheet and save all the sheets
 sh = gc.open(f'Auditoria-SEO-{client_name}')
@@ -18,9 +20,9 @@ sh = gc.open(f'Auditoria-SEO-{client_name}')
 # save all the workseets in variables
 wks_velocidad = sh.worksheet('title', 'Velocidad')
 wks_cache = sh.worksheet('title', 'Caché')
-wks_webVitals = sh.worksheet('title', 'Web Vitals')
+wks_webVitals = sh.worksheet('title', 'Core Web Vitals')
 wks_pageSpeed = sh.worksheet('title', 'PageSpeed')
-wks_mobileFriendly = sh.worksheet('title', 'Web Responsive')
+wks_mobileFriendly = sh.worksheet('title', 'Mobile Friendly')
 
 # save all the URLs to check to
 urls_list = []
