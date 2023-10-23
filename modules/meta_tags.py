@@ -33,7 +33,7 @@ def get_rendered_source_code(url):
 
 
 # open the Google spreadsheet and save all the sheets
-credentials = './credentials/client_secret_dahseo.json'
+credentials = './credentials/client_secret.json'
 gc = pygsheets.authorize(client_secret=credentials)
 sh = gc.open(f'Auditoria-SEO-{client_name}')
 
