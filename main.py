@@ -12,7 +12,7 @@ import modules.meta_tags as mt
 gc = lgs.log_to_gs()
 
 # Web Scraping Modules
-# mt.run_meta_tags_test(gau.urls_list, mt.get_audit_sheet(gc))
+mt.run_meta_tags_test(gau.urls_list, mt.get_audit_sheet(gc))
 
 mobile_results = rt.request_tests_mobile(gau.urls_list)
 desktop_results = rt.request_tests_desktop(gau.urls_list)
