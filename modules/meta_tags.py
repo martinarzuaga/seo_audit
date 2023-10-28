@@ -1,7 +1,8 @@
 import os.path
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+# from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+import chromedriver_autoinstaller
 from bs4 import BeautifulSoup
 import pygsheets
 from modules.create_endpoint import client_name
@@ -14,11 +15,17 @@ options.add_argument("--no-sandbox")
 options.add_argument("--window-size=1920,1080")
 
 # Set path to chromedriver as per your configuration
-homedir = os.path.expanduser("~")
-webdriver_service = Service(f"{homedir}/chromedriver/stable/chromedriver")
+# FOR UBUNTU
+# homedir = os.path.expanduser("~")
+# webdriver_service = Service(f"{homedir}/chromedriver/stable/chromedriver")
+# FOR WINDOWS
+# os.environ['PATH'] += r"C:/chromedriver/"
+chromedriver_autoinstaller.install()
 
 # Choose Chrome Browser
-driver = webdriver.Chrome(service=webdriver_service, options=options)
+# FOR UBUNTU
+# driver = webdriver.Chrome(service=webdriver_service, options=options)
+driver = webdriver.Chrome(options=options)
 
 def get_rendered_source_code(url):
     driver.implicitly_wait(10)
