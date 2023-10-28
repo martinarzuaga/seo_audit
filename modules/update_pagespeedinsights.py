@@ -2,6 +2,8 @@ import urllib.request, json
 
 psi_api_key = 'key=AIzaSyAYCP7iSxwNwA9qqdLUZ9X2BpPtA1L0rUY'
 
+category = 'performance'
+
 mobile_strategy = 'strategy=mobile'
 
 desktop_strategy = 'strategy=desktop'
@@ -42,7 +44,7 @@ def update_psi_desktop(urls, wks_pagespeed):
     """
     
     for i in range(len(urls)):
-        endpoint = url_test_endpoint + 'url=' + urls[i][0] + sep + desktop_strategy + sep + locale + sep + psi_api_key
+        endpoint = url_test_endpoint + 'url=' + urls[i] + sep + desktop_strategy + sep + locale + sep + psi_api_key
         response = urllib.request.urlopen(endpoint)
         data = json.loads(response.read())
         overall_score = data["lighthouseResult"]["categories"]["performance"]["score"] * 100

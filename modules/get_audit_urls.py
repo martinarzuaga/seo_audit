@@ -3,8 +3,10 @@ import pygsheets
 import requests
 from modules.create_endpoint import client_name
 
+credentials = './credentials/client_secret_dahseo.json'
+
 # Login to Google Sheets
-gc = pygsheets.authorize(client_secret='./credentials/client_secret_martin.json')
+gc = pygsheets.authorize(client_secret=credentials)
 
 # open the Google spreadsheet and save all the sheets
 sh = gc.open(f'Auditoria-SEO-{client_name}')
