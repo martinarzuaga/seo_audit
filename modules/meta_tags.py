@@ -1,12 +1,10 @@
 import os.path
 from selenium import webdriver
-# from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 import chromedriver_autoinstaller
 from bs4 import BeautifulSoup
 import pygsheets
 from modules.create_endpoint import client_name
-from urllib.parse import urlparse
 
 # Setup chrome options
 options = Options()
@@ -15,27 +13,21 @@ options.add_argument("--no-sandbox")
 options.add_argument("--window-size=1920,1080")
 
 # Set path to chromedriver as per your configuration
-# FOR UBUNTU
-# homedir = os.path.expanduser("~")
-# webdriver_service = Service(f"{homedir}/chromedriver/stable/chromedriver")
-# FOR WINDOWS
-# os.environ['PATH'] += r"C:/chromedriver/"
 chromedriver_autoinstaller.install()
 
 # Choose Chrome Browser
-# FOR UBUNTU
-# driver = webdriver.Chrome(service=webdriver_service, options=options)
 driver = webdriver.Chrome(options=options)
+
 
 def get_rendered_source_code(url):
     driver.implicitly_wait(10)
     # Get the URL
     driver.get(url)
-    
+
     # Save the rendered source code
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
-    
+
     return soup
 
 
@@ -51,7 +43,7 @@ def get_audit_sheet(gc):
 
 
 # Get the title and update it
-def seo_title(html, sheet, cell_number):
+def title_tag(html, sheet, cell_number):
     # Get the Title Worksheet
     wks_titles = sheet.worksheet('title', 'Títulos')
 
@@ -63,24 +55,26 @@ def seo_title(html, sheet, cell_number):
 
 
 # Get the meta description and update it
-def seo_meta_description(html, sheet, cell_number):
+def meta_description(html, sheet, cell_number):
     # Get the Meta-description Worksheet
     wks_desc = sheet.worksheet('title', 'Meta-description')
 
     try:
-        meta_description = html.find('meta', {'name':'description'}).get('content')
+        meta_description = html.find(
+            'meta', {'name': 'description'}).get('content')
         wks_desc.update_value(f'C{cell_number+2}', meta_description)
     except:
         wks_desc.update_value(f'C{cell_number+2}', '')
 
 
 # Get the meta robots value, update it and evaluate.
-def seo_noindex_tag(html, sheet, cell_number):
+def noindex_tag(html, sheet, cell_number):
     # Get the Indexacion Worksheet
     wks_indexacion = sheet.worksheet('title', 'Indexación')
 
     if html.find('meta', {'name': 'robots'}):
-        meta_robots_tag = html.find('meta', {'name': 'robots'}).get('content').lower()
+        meta_robots_tag = html.find(
+            'meta', {'name': 'robots'}).get('content').lower()
     else:
         meta_robots_tag = ''
 
@@ -96,7 +90,7 @@ def seo_noindex_tag(html, sheet, cell_number):
         wks_indexacion.update_value(f'D{cell_number + 2}', 'Sin bloqueo')
 
 
-def seo_canonical_tag(html, sheet, cell_number):
+def canonical_tag(html, sheet, cell_number):
 
     # Get the Canonical Worksheet
     wks_canonicals = sheet.worksheet('title', 'URL Canonicals')
@@ -110,7 +104,7 @@ def seo_canonical_tag(html, sheet, cell_number):
         wks_canonicals.update_value(f'D{cell_number + 2}', '')
 
 
-def seo_headings_tags(html, sheet, cell_number):
+def headings_tags(html, sheet, cell_number):
 
     # Get the headings Worksheet
     wks_headings = sheet.worksheet('title', 'Etiquetas H')
@@ -143,10 +137,11 @@ def seo_headings_tags(html, sheet, cell_number):
     elif len(h2_tags) == 0:
         wks_headings.update_value(f'E{cell_number + 2}', '')
 
-    wks_headings.update_value(f'C{cell_number+2}', f'H1 ({len(h1_tags)}), H2 ({len(h2_tags)}), H3 ({len(h3_tags)}), H4 ({len(h4_tags)}), H5 ({len(h5_tags)}), H6 ({len(h6_tags)})')
+    wks_headings.update_value(f'C{cell_number+2}', f'H1 ({len(h1_tags)}), H2 ({len(h2_tags)}), H3 ({
+                              len(h3_tags)}), H4 ({len(h4_tags)}), H5 ({len(h5_tags)}), H6 ({len(h6_tags)})')
 
 
-def seo_alt_images(html, sheet, cell_number):
+def alt_images(html, sheet, cell_number):
 
     # Get the headings Worksheet
     wks_imagenes = sheet.worksheet('title', 'Optimización Imágenes')
@@ -188,26 +183,26 @@ def run_meta_tags_test(urls_list, sheet):
         url = get_rendered_source_code(urls_list[i])
 
         # Get the title and update it
-        seo_title(url, sheet, i)
+        title_tag(url, sheet, i)
         print(f'Title de la celda E{i + 2} actualizado')
         #
         # # Get the meta description and updated
-        seo_meta_description(url, sheet, i)
+        meta_description(url, sheet, i)
         print(f'Meta-description de la celda E{i + 2} actualizada')
         #
         # # Evaluate the meta_robots_tag
-        seo_noindex_tag(url, sheet, i)
+        noindex_tag(url, sheet, i)
         print(f'Meta robots tag de la celda E{i + 2} actualizada')
         #
         # # Evaluate the canonical tag
-        seo_canonical_tag(url, sheet, i)
+        canonical_tag(url, sheet, i)
         print(f'Canonical de la celda E{i + 2} actualizada')
         #
         # # Update the H2 tags
-        seo_headings_tags(url, sheet, i)
+        headings_tags(url, sheet, i)
         print(f'H1 de la celda D{i + 2} actualizadas')
         print(f'H2 de la celda E{i + 2} actualizadas')
 
         # Actualizar Optimización de Imágenes
-        seo_alt_images(url, sheet, i)
+        alt_images(url, sheet, i)
         print(f'Alt en imágenes en la fila {i + 2} actualizado')

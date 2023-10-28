@@ -7,7 +7,7 @@ def update_cache(data, wks_cache):
         data (list): the result from get_urls. JSON response in a list format
         wks_velocidad (Worksheet): the Worksheet object to update.
     """
-    
+
     for i in range(len(data)):
         # Add KB first and repeat view to the spreadsheet
         kb_first_view = round(int(
@@ -30,5 +30,5 @@ def update_cache(data, wks_cache):
             data[i][1]['data']['average']['repeatView']['requestsFull'])
 
         wks_cache.update_value(f'G{i + 2}', requests_repeat_view)
-    
+
     print('Cache Updated Successfully')

@@ -15,23 +15,20 @@ def request_tests_mobile(urls):
     for url in urls:
 
         endpoint = api_base_url + url_param + url + sep + \
-                   api_param + wpt_api_key + sep + format_param + format_resp + sep + scenario_mobile + sep + mobile + throttle_cpu
+            api_param + wpt_api_key + sep + format_param + format_resp + \
+            sep + scenario_mobile + sep + mobile + throttle_cpu
 
-        ''' ------------------------
-        MAKE THE REQUEST
-        ------------------------ '''
         # Start the Test
         r = requests.get(endpoint)
+
         # Store the response text in a json dictionary
         url_requested = json.loads(r.text)['data']['jsonUrl']
 
-        ''' -------------------------------
-        CHECK THE STATUS OF THE TEST
-        ------------------------------- '''
+       # Check the status test
         content = check_status_test(url_requested, url)
 
         data.append([url, content])
-    
+
     return data
     # End the request_tests function
 
@@ -48,19 +45,16 @@ def request_tests_desktop(urls):
 
     for url in urls:
         endpoint = api_base_url + url_param + url + sep + \
-                   api_param + wpt_api_key + sep + format_param + format_resp + sep + scenario_desktop + sep + throttle_cpu
+            api_param + wpt_api_key + sep + format_param + \
+            format_resp + sep + scenario_desktop + sep + throttle_cpu
 
-        ''' ------------------------
-        MAKE THE REQUEST
-        ------------------------ '''
         # Start the Test
         r = requests.get(endpoint)
+
         # Store the response text in a json dictionary
         url_requested = json.loads(r.text)['data']['jsonUrl']
 
-        ''' -------------------------------
-        CHECK THE STATUS OF THE TEST
-        ------------------------------- '''
+        # Check the status test
         content = check_status_test(url_requested, url)
 
         data.append([url, content])
