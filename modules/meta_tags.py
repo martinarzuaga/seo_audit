@@ -1,4 +1,3 @@
-import os.path
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import chromedriver_autoinstaller
@@ -50,7 +49,7 @@ def title_tag(html, sheet, cell_number):
     try:
         title = html.find('title').get_text()
         wks_titles.update_value(f'C{cell_number+2}', title)
-    except:
+    except title is None:
         wks_titles.update_value(f'C{cell_number+2}', '')
 
 
@@ -63,7 +62,7 @@ def meta_description(html, sheet, cell_number):
         meta_description = html.find(
             'meta', {'name': 'description'}).get('content')
         wks_desc.update_value(f'C{cell_number+2}', meta_description)
-    except:
+    except meta_description is None:
         wks_desc.update_value(f'C{cell_number+2}', '')
 
 
@@ -99,7 +98,7 @@ def canonical_tag(html, sheet, cell_number):
         meta_canonical_tag = html.find('link', {'rel': 'canonical'})['href']
         wks_canonicals.update_value(f'C{cell_number+2}', 'Configurado')
         wks_canonicals.update_value(f'D{cell_number+2}', meta_canonical_tag)
-    except:
+    except meta_canonical_tag is None:
         wks_canonicals.update_value(f'C{cell_number+2}', 'No Configurado')
         wks_canonicals.update_value(f'D{cell_number + 2}', '')
 
@@ -137,8 +136,11 @@ def headings_tags(html, sheet, cell_number):
     elif len(h2_tags) == 0:
         wks_headings.update_value(f'E{cell_number + 2}', '')
 
-    wks_headings.update_value(f'C{cell_number+2}', f'H1 ({len(h1_tags)}), H2 ({len(h2_tags)}), H3 ({
-                              len(h3_tags)}), H4 ({len(h4_tags)}), H5 ({len(h5_tags)}), H6 ({len(h6_tags)})')
+    wks_headings.update_value(
+        f'C{cell_number+2}', f'H1 ({len(h1_tags)}),\
+        H2 ({len(h2_tags)}), H3 ({len(h3_tags)}), \
+        H4 ({len(h4_tags)}), H5 ({len(h5_tags)}), \
+        H6 ({len(h6_tags)})')
 
 
 def alt_images(html, sheet, cell_number):
@@ -169,7 +171,7 @@ def alt_images(html, sheet, cell_number):
                     img_with_alt += 1
                 else:
                     img_without_alt += 1
-        except:
+        except imagen.parent.name != 'noscript':
             img_without_alt += 1
 
     wks_imagenes.update_value(f'C{cell_number+2}', img_total)

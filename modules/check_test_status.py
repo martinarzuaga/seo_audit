@@ -1,6 +1,6 @@
 import requests
 import json
-from modules.countdown import *
+from modules.countdown import countdown
 
 ''' ----------------------------------------------------------------
 
@@ -13,7 +13,6 @@ def check_status_test(url_req, url):
 
     # Request the url content
     r_json = requests.get(url_req)
-    
     # Store the content in a json dictionary
     cont = json.loads(r_json.text)
 

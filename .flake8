@@ -1,0 +1,12 @@
+[flake8]
+extend-ignore = E203, F403, F405
+exclude =
+    __pycache__
+    venv
+    .git
+    .idea
+    .vscode
+    credentials
+    screenshots
+    test.py
+max-complexity = 10

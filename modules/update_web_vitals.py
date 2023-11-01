@@ -9,10 +9,14 @@ def update_web_vitals_mobile(mobile_data, wks_webVitals):
 
     for i in range(len(mobile_data)):
 
-        lcp = round(int(mobile_data[i][1]['data']['average']['firstView']
-                    ['chromeUserTiming.LargestContentfulPaint']) / 1000, 2)
-        cls = round(float(mobile_data[i][1]['data']['average']
-                    ['firstView']['chromeUserTiming.CumulativeLayoutShift']), 5)
+        lcp = round(
+            int(mobile_data[i][1]['data']
+                ['average']['firstView']
+                ['chromeUserTiming.LargestContentfulPaint']) / 1000, 2)
+        cls = round(
+            float(mobile_data[i][1]['data']
+                  ['average']['firstView']
+                  ['chromeUserTiming.CumulativeLayoutShift']), 5)
         tbt = int(mobile_data[i][1]['data']['average']
                   ['firstView']['TotalBlockingTime'])
 
@@ -33,10 +37,14 @@ def update_web_vitals_desktop(desktop_data, wks_webVitals):
 
     for i in range(len(desktop_data)):
 
-        lcp = round(int(desktop_data[i][1]['data']['average']['firstView']
-                    ['chromeUserTiming.LargestContentfulPaint']) / 1000, 2)
-        cls = round(float(desktop_data[i][1]['data']['average']
-                    ['firstView']['chromeUserTiming.CumulativeLayoutShift']), 5)
+        lcp = round(
+            int(desktop_data[i][1]['data']
+                ['average']['firstView']
+                ['chromeUserTiming.LargestContentfulPaint']) / 1000, 2)
+        cls = round(
+            float(desktop_data[i][1]['data']
+                  ['average']['firstView']
+                  ['chromeUserTiming.CumulativeLayoutShift']), 5)
         tbt = int(desktop_data[i][1]['data']['average']
                   ['firstView']['TotalBlockingTime'])
 

@@ -10,7 +10,8 @@ def update_mobileFriendlyTest():
 
         row = i[0]
 
-        endpoint = 'https://searchconsole.googleapis.com/v1/urlTestingTools/mobileFriendlyTest:run'
+        endpoint = 'https://searchconsole.googleapis.com/v1/urlTestingTools/\
+            mobileFriendlyTest:run'
 
         if 'http' in row.value:
             url_toTest = row.value
@@ -31,7 +32,9 @@ def update_mobileFriendlyTest():
         reference = gau.wks_mobileFriendly.cell(f'A{row.row}')
 
         if data["screenshot"]["data"]:
-            with open(f'./screenshots/screenshot-{reference.value}.png', 'wb') as fh:
+            with open(
+                    f'./screenshots/screenshot-{reference.value}.png',
+                    'wb') as fh:
                 fh.write(base64.b64decode(data["screenshot"]["data"]))
         else:
             print(f'La URL: {url_toTest} no tiene captura.')

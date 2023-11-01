@@ -1,7 +1,7 @@
 import time
 
+
 def countdown(sec, url):
-    
     while sec:
         mins, secs = divmod(sec, 60)
         timeformat = '{:02d}:{:02d}'.format(mins, secs)

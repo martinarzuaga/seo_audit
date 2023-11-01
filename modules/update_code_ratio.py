@@ -19,7 +19,8 @@ def update_code_ratio(data, wks_velocidad):
                         ['firstView']['breakdown']['image']['bytes'])
         font_bytes = int(data[i][1]['data']['median']
                          ['firstView']['breakdown']['font']['bytes'])
-        total_bytes = html_bytes + css_bytes + js_bytes + font_bytes + img_bytes
+        total_bytes = html_bytes + css_bytes + \
+            js_bytes + font_bytes + img_bytes
 
         html_ratio = round((html_bytes * 100) / total_bytes, 2) / 100
         css_ratio = round((css_bytes * 100) / total_bytes, 2) / 100

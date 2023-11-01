@@ -1,12 +1,13 @@
-from modules.get_urls import *
 from modules.request_tests import *
+from modules.get_audit_urls import *
 
 
 def update_velocidad(data):
 
     for i in range(len(data)):
 
-        speed_index = round(int(data[i][1]['data']['average']['firstView']['SpeedIndex']) / 1000)
+        speed_index = round(int(data[i][1]['data']['average']
+                            ['firstView']['SpeedIndex']) / 1000)
 
         sh.worksheet('title', 'Velocidad').update_value(f'C{i+2}', speed_index)
 
