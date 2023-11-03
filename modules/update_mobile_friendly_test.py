@@ -30,12 +30,12 @@ def update_mobileFriendlyTest():
 
         reference = gau.wks_mobileFriendly.cell(f'A{row.row}')
 
-        if data["screenshot"]["data"]:
-            with open(f'./screenshots/screenshot-{reference.value}.png', 'wb') as fh:
-                fh.write(base64.b64decode(data["screenshot"]["data"]))
-        else:
-            print(f'La URL: {url_toTest} no tiene captura.')
-            continue
+        # if data["screenshot"]["data"]:
+        #     with open(f'./screenshots/screenshot-{reference.value}.png', 'wb') as fh:
+        #         fh.write(base64.b64decode(data["screenshot"]["data"]))
+        # else:
+        #     print(f'La URL: {url_toTest} no tiene captura.')
+        #     continue
 
         if data['mobileFriendliness'] == 'MOBILE_FRIENDLY':
             gau.wks_mobileFriendly.update_value(f'C{row.row}', 'Bien')
